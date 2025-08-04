@@ -2,10 +2,10 @@ from django.db import models
 from doctor.models import BaseModel
 
 # Create your models here.
-class Patient(models.Model, BaseModel):
+class Patient(BaseModel):
     class Gender(models.TextChoices):
-        MALE = 'male', 'Male', 'MALE'
-        FEMALE = 'female', 'Female', 'FEMALE'
+        MALE = 'male', 'Male'
+        FEMALE = 'female', 'Female'
 
     patient_code = models.CharField(max_length=8)
     gender = models.CharField(max_length=10, choices=Gender.choices)
@@ -16,5 +16,10 @@ class Patient(models.Model, BaseModel):
     insurance_provider = models.CharField(max_length=100)
     insurance_policy_number = models.CharField(max_length=20)
     blood_group = models.CharField(max_length=10)
-    
 
+    def __str__(self):
+        return self.patient_code
+    
+    class Meta:
+        verbose_name = "patient"
+        verbose_name_plural = "pateints"
