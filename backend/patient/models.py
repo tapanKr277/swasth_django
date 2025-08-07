@@ -3,6 +3,7 @@ from doctor.models import BaseModel
 
 # Create your models here.
 class Patient(BaseModel):
+    user = models.OneToOneField('custom_user.CustomUser', on_delete=models.CASCADE, related_name='patient')
     class Gender(models.TextChoices):
         MALE = 'male', 'Male'
         FEMALE = 'female', 'Female'

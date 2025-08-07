@@ -1,5 +1,6 @@
 from django.db import models
 from doctor.models import BaseModel
+
 # Create your models here.
 class Consultation(BaseModel):
     patient = models.ForeignKey('patient.Patient', on_delete=models.CASCADE, related_name="consultations")

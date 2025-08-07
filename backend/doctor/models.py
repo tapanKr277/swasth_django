@@ -12,6 +12,7 @@ class BaseModel(models.Model):
         abstract = True
 
 class Doctor(BaseModel):
+    user = models.OneToOneField('custom_user.CustomUser', on_delete=models.CASCADE, related_name='doctor')
     specialization = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=10)
     license_number = models.CharField(max_length=50)
@@ -26,3 +27,10 @@ class Doctor(BaseModel):
         db_table = 'doctor'
         verbose_name = "Doctor"
         verbose_name_plural = "Doctors"
+
+class DoctorPatient(BaseModel):
+    doctor = models.ForeignKey("doctor", on_delete=models.CASCADE, related_name='doctors_patients')
+    patient = models.ForeignKey("patient.patient", on_delete=models.CASCADE, related_name='doctors_patients')
+
+    def __str__(self):
+        return self.doctor.user.first_name + " " + self.patient.user.first_name
