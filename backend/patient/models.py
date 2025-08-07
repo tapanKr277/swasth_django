@@ -19,7 +19,9 @@ class Patient(BaseModel):
 
     def __str__(self):
         return self.patient_code
+
     
     class Meta:
-        verbose_name = "patient"
-        verbose_name_plural = "pateints"
+        db_table = 'patient'
+        verbose_name = "Patient"
+        verbose_name_plural = "Patients"

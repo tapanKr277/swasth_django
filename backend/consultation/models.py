@@ -13,6 +13,11 @@ class Consultation(BaseModel):
     def __str__(self):
         return self.patient.patient_code
 
+    class Meta:
+        db_table = 'consultation'
+        verbose_name = 'Consultation'
+        verbose_name_plural  = 'Consultations'
+
 class FollowUp(BaseModel):
     class Status(models.TextChoices):
         UPCOMING = 'upcoming', 'Upcoming'
@@ -26,6 +31,11 @@ class FollowUp(BaseModel):
     def __str__(self):
         return self.consultation.patient.patient_code
 
+    class Meta:
+        db_table = 'follow_up'
+        verbose_name = 'FollowUp'
+        verbose_name_plural  = 'FollowUps'
+
 class Prescription(BaseModel):
     consultation = models.ForeignKey('Consultation', on_delete=models.CASCADE, related_name="prescriptions")
     medicineName = models.CharField(max_length=100)
@@ -35,6 +45,12 @@ class Prescription(BaseModel):
 
     def __str__(self):
         return self.medicineName
+
+    class Meta:
+        db_table = 'prescription'
+        verbose_name = 'Prescription'
+        verbose_name_plural  = 'Prescriptions'
+        
 
 class TestReport(BaseModel):
     consultation = models.ForeignKey('Consultation', on_delete=models.CASCADE, related_name="test_reports")
@@ -46,3 +62,8 @@ class TestReport(BaseModel):
 
     def __str__(self):
         return self.consultation.patient.patient_code
+
+    class Meta:
+        db_table = 'test_reports'
+        verbose_name = 'Test Report'
+        verbose_name_plural = 'Test Reports'

@@ -40,3 +40,8 @@ class CustomUser(BaseModel,AbstractBaseUser,PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    class Meta:
+        db_table = 'custom_user'
+        verbose_name = 'Custom User'
+        verbose_name_plural = 'Custom Users'

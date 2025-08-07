@@ -23,5 +23,6 @@ class Doctor(BaseModel):
         return self.specialization
 
     class Meta:
-        verbose_name = "doctor"
-        verbose_name_plural = "doctors"
+        db_table = 'doctor'
+        verbose_name = "Doctor"
+        verbose_name_plural = "Doctors"
