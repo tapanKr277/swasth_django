@@ -16,7 +16,6 @@ class Patient(BaseModel):
     existing_conditions = models.TextField()
     insurance_provider = models.CharField(max_length=100)
     insurance_policy_number = models.CharField(max_length=20)
-    blood_group = models.CharField(max_length=10)
 
     def __str__(self):
         return self.patient_code
