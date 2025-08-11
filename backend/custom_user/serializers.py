@@ -52,11 +52,19 @@ class CreateDoctorSerializer(serializers.ModelSerializer):
         Doctor.objects.create(user=user, **doctor_data)
         return user
 
+# class UserSerializer(serializers.ModelSerializer):
+#     groups = GroupSerializer(many=True)
+#     all_permissions = serializers.SerializerMethodField()
+#     class Meta:
+#         model = CustomUser
+#         exclude = ('password',)
+#     def get_permissions(self, obj):
+#         return list(obj.get_all_permissions())
+
 class UserSerializer(serializers.ModelSerializer):
-    groups = GroupSerializer(many=True)
-    all_permissions = serializers.SerializerMethodField()
+    # groups = GroupSerializer(many=True)
+    # all_permissions = PermissionSerializer()
+
     class Meta:
         model = CustomUser
-        exclude = ('password',)
-    def get_permissions(self, obj):
-        return list(obj.get_all_permissions())
+        exclude = ('password', 'is_active', 'is_staff', 'groups', 'user_permissions')
