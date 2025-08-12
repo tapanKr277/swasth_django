@@ -27,14 +27,14 @@ class CreatePatientUserView(APIView):
             return Response(e, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
 class ListAllPatientView(APIView):
-    permission_classes = [IsDoctorGrpoupUser]
+    # permission_classes = [IsDoctorGrpoupUser]
     def get(self, request):
         patients = Patient.objects.all()
         serialized_data = ListAllPatientSerializer(patients, many=True)
         return Response(serialized_data.data, status=status.HTTP_200_OK)
  
 class ListAllDoctorView(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    # permission_classes = [IsAuthenticated, IsAdminUser]
     def get(self, request):
         doctors = Doctor.objects.all()
         serialized_data = ListAllDoctorSerializer(doctors, many=True)
