@@ -23,7 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
     path('api/user/', include('custom_user.urls')),
+    path('api/consultation/', include('consultation.urls')),
 ] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# patient_id = d6f641d2-78ce-428b-ac5f-d5055700a3cf
+# doctor_id =65d6ebaf-8eab-48f9-8eaa-eb70bcb2c114
