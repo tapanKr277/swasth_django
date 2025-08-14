@@ -1,4 +1,4 @@
-from .models import Consultation
+from .models import Consultation, Prescription, TestReport, FollowUp
 from rest_framework import serializers
 from patient.models import Patient
 from doctor.models import Doctor
@@ -27,3 +27,19 @@ class CreateConsultationSerializer(serializers.ModelSerializer):
         if data['patient'].user == data['doctor'].user:
             raise serializers.ValidationError("Doctor and patient cannot be the same person.")
         return data
+    
+class PrescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prescription
+        fields = '__all__'
+    
+class FollowUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FollowUp
+        fields = '__all__'
+
+class TestReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestReport
+        fields = '__all__'
+        
